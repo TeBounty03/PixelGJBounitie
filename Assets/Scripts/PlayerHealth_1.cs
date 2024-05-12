@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth_1 : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
@@ -14,27 +14,29 @@ public class PlayerHealth : MonoBehaviour
         Canvas canvas = FindObjectOfType<Canvas>();
         if (canvas != null)
         {
-            // Recherchez l'objet Image dans le Canvas
-            Image image = canvas.GetComponentInChildren<Image>();
-
-            if (image != null && image.name == "Heart_1")
+            foreach (Transform child in canvas.transform)
             {
-                // Recherchez le composant TextMeshProUGUI dans l'objet Image
-                healthText = image.GetComponentInChildren<TextMeshProUGUI>();
+                GameObject childObject = child.gameObject;
 
-                if (healthText != null)
+                if (childObject != null && childObject.name.Contains("1"))
                 {
-                    // Faites quelque chose avec le TextMeshProUGUI trouvé
-                    Debug.Log("TextMeshProUGUI trouvé !");
+                    // Recherchez le composant TextMeshProUGUI dans l'objet Image
+                    healthText = childObject.GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (healthText != null)
+                    {
+                        // Faites quelque chose avec le TextMeshProUGUI trouvé
+                        Debug.Log("TextMeshProUGUI P1 trouvé !");
+                    }
+                    else
+                    {
+                        Debug.LogError("TextMeshProUGUI P1 non trouvé dans l'objet Image.");
+                    }
                 }
                 else
                 {
-                    Debug.LogError("TextMeshProUGUI non trouvé dans l'objet Image.");
+                    Debug.LogError("Image P1 non trouvée dans le Canvas.");
                 }
-            }
-            else
-            {
-                Debug.LogError("Image non trouvée dans le Canvas.");
             }
         }
         else

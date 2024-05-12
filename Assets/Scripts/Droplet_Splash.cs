@@ -10,9 +10,19 @@ public class Droplet_Splash : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(1);
-            Destroy(transform.gameObject);
+            if (collision.transform.GetComponent<PlayerHealth_1>() != null)
+            {
+                PlayerHealth_1 playerHealth = collision.transform.GetComponent<PlayerHealth_1>();
+                playerHealth.TakeDamage(1);
+                Destroy(transform.gameObject);
+            }
+            else if (collision.transform.GetComponent<PlayerHealth_2>() != null)
+            {
+                PlayerHealth_2 playerHealth = collision.transform.GetComponent<PlayerHealth_2>();
+                playerHealth.TakeDamage(1);
+                Destroy(transform.gameObject);
+            }
+
         }
 
         if (collision.CompareTag("Ground"))
