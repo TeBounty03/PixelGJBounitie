@@ -1,27 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Main_Menu : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject CreditsMenu;
 
-
     void Start()
     {
         MainMenuButton();
     }
 
+    
+
     public void SoloButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        LoadGameScene(1);
     }
 
     public void DuoButton()
     {
+        LoadGameScene(2);
+    }
 
+    public void LoadGameScene(int numberOfPlayers) {
+        SceneManager.LoadScene("SampleScene");
+        PlayerPrefs.SetInt("NumberOfPlayers", numberOfPlayers);
     }
 
     public void CreditsButton()
@@ -45,4 +51,5 @@ public class Main_Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
