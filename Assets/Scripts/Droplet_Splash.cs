@@ -10,6 +10,8 @@ public class Droplet_Splash : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(1);
             Destroy(transform.gameObject);
         }
 
