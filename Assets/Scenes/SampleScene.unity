@@ -1170,7 +1170,7 @@ Transform:
   m_GameObject: {fileID: 829420210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.69, y: 5.33, z: 0}
+  m_LocalPosition: {x: -1.69, y: 5.97, z: 0}
   m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1252,17 +1252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 829420214}
   acceleration: 0.01
---- !u!114 &1511618190 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8894736938438451751, guid: 8bcbd848e0f5ed84fa160807e4c6d7a6, type: 3}
-  m_PrefabInstance: {fileID: 5991659693880137273}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1570688658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1374,7 @@ PrefabInstance:
     - target: {fileID: -7690774938100048096, guid: 0e703312aafccce429922d84cca920db, type: 3}
       propertyPath: healthText
       value: 
-      objectReference: {fileID: 1511618190}
+      objectReference: {fileID: 0}
     - target: {fileID: -7690774938100048096, guid: 0e703312aafccce429922d84cca920db, type: 3}
       propertyPath: currentHealth
       value: 3
@@ -1449,7 +1438,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 860081057989954895, guid: 8bcbd848e0f5ed84fa160807e4c6d7a6, type: 3}
       propertyPath: m_Name
-      value: Heart
+      value: Heart_1
       objectReference: {fileID: 0}
     - target: {fileID: 3854459917961933783, guid: 8bcbd848e0f5ed84fa160807e4c6d7a6, type: 3}
       propertyPath: m_Pivot.x
