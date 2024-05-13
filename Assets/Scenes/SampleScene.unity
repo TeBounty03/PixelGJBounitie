@@ -1309,6 +1309,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227842536
+--- !u!1 &1238126660
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1321,11 +1322,17 @@ GameObject:
   m_Layer: 0
   m_Name: BoxColliderLeft
   m_TagString: Ground
+  - component: {fileID: 1238126661}
+  - component: {fileID: 1238126662}
+  m_Layer: 0
+  m_Name: DropSpawner
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1227842537
+--- !u!4 &1238126661
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1342,6 +1349,17 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1227842538
 BoxCollider2D:
+  m_GameObject: {fileID: 1238126660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.87413913, y: 0.54357064, z: 0.03211249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1238126662
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1462,6 +1480,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 0.93556666}
   m_EdgeRadius: 0
+  m_GameObject: {fileID: 1238126660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a4c643023b3ff4c888314d1bb441c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 2513844642058248233, guid: df31381dd110e9546a9f640b9eb2e3dd, type: 3}
+  mainCamera: {fileID: 519420031}
+  spawnInterval: 1
+  waitTime: 2
 --- !u!1 &1376394420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1676,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 280253617}
   - {fileID: 1376394424}
-  - {fileID: 829420212}
   - {fileID: 1114448276}
   - {fileID: 105840797}
+  - {fileID: 1238126661}
