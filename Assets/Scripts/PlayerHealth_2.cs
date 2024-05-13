@@ -35,7 +35,7 @@ public class PlayerHealth_2 : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Image P2 non trouvée dans le Canvas.");
+                    // Debug.LogError("Image P2 non trouvée dans le Canvas.");
                 }
             }
         }

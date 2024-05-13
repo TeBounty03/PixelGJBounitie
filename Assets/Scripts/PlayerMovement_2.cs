@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement_2 : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        if (Input.GetButtonDown("Jump_2") && isGrounded)
         {
             isJumping = true;
         }
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
-        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        float horizontalMovement = Input.GetAxis("Horizontal_2") * moveSpeed * Time.deltaTime;
 
         MovePlayer(horizontalMovement);
 
