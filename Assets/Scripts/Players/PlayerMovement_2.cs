@@ -2,50 +2,69 @@ using UnityEngine;
 
 public class PlayerMovement_2 : MonoBehaviour
 {
+    // Variables de mouvement
     public float moveSpeed = 350f;
     public float jumpForce = 7f;
 
+    // Variables d'état
     private bool isJumping;
     public bool isGrounded;
 
+    // Points de vérification au sol
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
 
+    // Rigidbody
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
+    // Composants d'animation
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+
+    // Variables de gravité
     [SerializeField] private float _fallMultiplier = 2f;
     [SerializeField] private float _lowJumpFallMultiplier = 2f;
 
+    // Variable pour vérifier si le joueur est poussé
+    private bool isPushed = false; // Ajout de cette variable
 
+    // Méthode appelée à chaque frame
     void Update()
     {
-        //No double jump
-        if (Input.GetButtonDown("Jump_2") && isGrounded)
+        // Sauter si le joueur est au sol et n'est pas poussé
+        if (Input.GetButtonDown("Jump_2") && isGrounded && !isPushed) // Ajouter !isPushed ici
         {
             isJumping = true;
         }
-
     }
 
+    // Méthode appelée à intervalles réguliers
     void FixedUpdate()
     {
+        // Ne pas exécuter le mouvement si le joueur est poussé
+
+        // Vérifier si le joueur est au sol
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+        if (!isPushed) // Ajouter cette condition
+        {
+            // Calcul du mouvement horizontal
+            float horizontalMovement = Input.GetAxis("Horizontal_2") * moveSpeed * Time.deltaTime;
+            MovePlayer(horizontalMovement);
+        }
+        Jump();
 
-        float horizontalMovement = Input.GetAxis("Horizontal_2") * moveSpeed * Time.deltaTime;
-        MovePlayer(horizontalMovement);
-
-        //Change gravity when falling
+        // Gestion de la gravité lors de la chute
         FallMultiplier();
 
-        //Animation
+        // Animation du personnage
         float characterVelocityX = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("SpeedX", characterVelocityX);
         Flip(rb.velocity.x);
+
     }
 
+    // Gestion de la gravité lors de la chute
     private void FallMultiplier()
     {
         if (rb.velocity.y < 0.1f)
@@ -62,13 +81,17 @@ public class PlayerMovement_2 : MonoBehaviour
         }
     }
 
+    // Mouvement horizontal du joueur
     void MovePlayer(float _horizontalMovement)
     {
-        //Horizontal Movement
+        // Mouvement horizontal
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
+    }
 
-        //Jump
+    private void Jump()
+    {
+        // Saut
         if (isJumping == true)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -76,6 +99,7 @@ public class PlayerMovement_2 : MonoBehaviour
         }
     }
 
+    // Flip du sprite du joueur en fonction de sa direction
     void Flip(float _velocityX)
     {
         if (_velocityX > 0.1f)
@@ -86,6 +110,17 @@ public class PlayerMovement_2 : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    // Méthode pour définir si le joueur est poussé ou non
+    public void SetPushed(bool state) // Ajouter cette méthode
+    {
+        isPushed = state;
+        Invoke("StopPushed", 0.15f);
+    }
+    public void StopPushed() // Ajouter cette méthode
+    {
+        isPushed = false;
 
     }
 }
