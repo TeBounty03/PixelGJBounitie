@@ -1462,6 +1462,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 0.93556666}
   m_EdgeRadius: 0
+  m_GameObject: {fileID: 1238126660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a4c643023b3ff4c888314d1bb441c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 2513844642058248233, guid: df31381dd110e9546a9f640b9eb2e3dd, type: 3}
+  mainCamera: {fileID: 519420031}
+  spawnInterval: 1
+  waitTime: 2
 --- !u!1 &1376394420
 GameObject:
   m_ObjectHideFlags: 0
