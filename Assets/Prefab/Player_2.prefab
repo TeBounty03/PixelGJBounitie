@@ -243,13 +243,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 350
-  jumpForce: 250
+  jumpForce: 7
   isGrounded: 0
   groundCheckLeft: {fileID: 5768998517517650562}
   groundCheckRight: {fileID: 7621438859935476963}
   rb: {fileID: 5193006987719867373}
   animator: {fileID: 5940246359874834852}
   spriteRenderer: {fileID: 8942715064145403149}
+  _fallMultiplier: 2
+  _lowJumpFallMultiplier: 2
 --- !u!1 &8248935548730419289
 GameObject:
   m_ObjectHideFlags: 0
