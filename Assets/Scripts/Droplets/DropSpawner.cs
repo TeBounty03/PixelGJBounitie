@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class DropSpawner : MonoBehaviour
@@ -6,11 +5,23 @@ public class DropSpawner : MonoBehaviour
     public GameObject dropPrefab;
     public Camera mainCamera;
     public float spawnInterval =  1f;
-
-    private Rigidbody2D rb;
-    public float waitTime = 2f;
+    public float waitTime = 10f;
+    public GameObject instantiatedPrefab;
 
     void Start()
+    {
+        InvokeRepeating("DropRandomPosition", 0f, spawnInterval);
+    }
+
+    // private IEnumerator WaitBeforeItFalls()
+    // {
+    //     yield return new WaitForSeconds(waitTime);
+    //     Debug.Log("Attendu 3 secondes. Exécute maintenant le reste du code.");
+
+    //     DropIfalls();
+
+    // }
+    private void DropRandomPosition()
     {
         // Récupérer la taille de la caméra pour calculer la position en haut
         float cameraHeight = 2f * mainCamera.orthographicSize;
@@ -23,20 +34,22 @@ public class DropSpawner : MonoBehaviour
             mainCamera.transform.position.y + (cameraHeight / 2f),
             0f
         );
-
         // Instancier la goutte à la position calculée
-        GameObject instantiatedPrefab = Instantiate(dropPrefab, spawnPosition, Quaternion.identity);
-        Rigidbody2D instantiatedRb = instantiatedPrefab.GetComponent<Rigidbody2D>();
-        if (instantiatedRb != null)
+        instantiatedPrefab = Instantiate(dropPrefab, spawnPosition, Quaternion.identity);
+        DropItfalls();
+    }
+
+    private void DropItfalls()
+    {
+        // Supprimer les contraintes de gel sur les axes x et y de la nouvelle instance
+        Rigidbody2D rb = instantiatedPrefab.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            Debug.Log("Prefab Rigidbody2D" + instantiatedRb.name);
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-            Debug.Log("FreezePositionY" + rb.constraints);
+            rb.constraints = RigidbodyConstraints2D.None;
         }
         else
         {
-            Debug.LogWarning("Le prefab ne contient pas de composant Rigidbody2D.");
+            Debug.LogWarning("Rigidbody2D non trouvé sur la prefab instanciée.");
         }
     }
-
 }
