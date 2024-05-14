@@ -6,7 +6,7 @@ public class DropSpawner : MonoBehaviour
     public Camera mainCamera;
     public float spawnInterval =  1f;
     public float waitTime = 10f;
-    public GameObject instantiatedPrefab;
+    private GameObject instantiatedPrefab;
 
     void Start()
     {
