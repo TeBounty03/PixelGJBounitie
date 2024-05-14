@@ -16,6 +16,9 @@ public class PlayerMovement_1 : MonoBehaviour
 
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    [SerializeField] private float _fallMultiplier = 2f;
+    [SerializeField] private float _lowJumpFallMultiplier = 2f;
+
 
     void Update()
     {
@@ -43,6 +46,24 @@ public class PlayerMovement_1 : MonoBehaviour
         // animator.SetBool("isGrounded", isGrounded);
 
         Flip(rb.velocity.x);
+        FallMultiplier();
+    }
+
+    private void FallMultiplier()
+    {
+
+        if (rb.velocity.y < 0.1f)
+        {
+            rb.gravityScale = _fallMultiplier;
+        }
+        else if (rb.velocity.y > 0.1f && !Input.GetButton("Jump_1"))
+        {
+            rb.gravityScale = _lowJumpFallMultiplier;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
+        }
     }
 
     void MovePlayer(float _horizontalMovement)
@@ -50,9 +71,11 @@ public class PlayerMovement_1 : MonoBehaviour
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
 
+        //Jump
         if (isJumping == true)
         {
-            rb.AddForce(new Vector2(0f, jumpForce));
+            // rb.AddForce(new Vector2(0f, jumpForce));
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = false;
         }
     }
