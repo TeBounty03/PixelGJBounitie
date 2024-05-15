@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement_1 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // Variables de mouvement
     public float moveSpeed = 350f;
@@ -64,14 +64,14 @@ public class PlayerMovement_1 : MonoBehaviour
     // Gestion de la gravité lors de la chute
     private void FallMultiplier()
     {
-        if (rb.velocity.y < -0.3f) //POURQUOI ÇA FAIT QUE DE RENTRER ICI BORDEL
+        if (rb.velocity.y < 0.1f)
         {
             // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _fallMultiplier;
         }
         else if (rb.velocity.y > 0.1f && !PlayerInputManager.Instance.GetJumpInput())
         {
-            Debug.Log(PlayerInputManager.Instance.GetJumpInput());
+            // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _lowJumpFallMultiplier;
         }
         else
