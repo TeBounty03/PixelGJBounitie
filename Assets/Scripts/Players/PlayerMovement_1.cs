@@ -33,7 +33,7 @@ public class PlayerMovement_1 : MonoBehaviour
     void Update()
     {
         // Sauter si le joueur est au sol et n'est pas poussé
-        if (Input.GetButtonDown("Jump_1") && isGrounded && !isPushed) // Ajouter !isPushed ici
+        if (PlayerInputManager.Instance.GetJumpInput() && isGrounded && !isPushed)
         {
             isJumping = true;
         }
@@ -43,25 +43,22 @@ public class PlayerMovement_1 : MonoBehaviour
     void FixedUpdate()
     {
         // Ne pas exécuter le mouvement si le joueur est poussé
-
         // Vérifier si le joueur est au sol
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
-        if (!isPushed) // Ajouter cette condition
+
+        if (!isPushed)
         {
             // Calcul du mouvement horizontal
-            float horizontalMovement = Input.GetAxis("Horizontal_1") * moveSpeed * Time.deltaTime;
+            float horizontalMovement = PlayerInputManager.Instance.GetHorizontalInput() * moveSpeed * Time.deltaTime;
             MovePlayer(horizontalMovement);
         }
         Jump();
-
-        // Gestion de la gravité lors de la chute
         FallMultiplier();
 
         // Animation du personnage
         float characterVelocityX = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("SpeedX", characterVelocityX);
         Flip(rb.velocity.x);
-
     }
 
     // Gestion de la gravité lors de la chute
@@ -69,10 +66,12 @@ public class PlayerMovement_1 : MonoBehaviour
     {
         if (rb.velocity.y < 0.1f)
         {
+            // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _fallMultiplier;
         }
-        else if (rb.velocity.y > 0.1f && !Input.GetButton("Jump_1"))
+        else if (rb.velocity.y > 0.1f && !PlayerInputManager.Instance.GetJumpInput())
         {
+            // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _lowJumpFallMultiplier;
         }
         else
@@ -84,15 +83,13 @@ public class PlayerMovement_1 : MonoBehaviour
     // Mouvement horizontal du joueur
     void MovePlayer(float _horizontalMovement)
     {
-        // Mouvement horizontal
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f);
     }
 
     private void Jump()
     {
-        // Saut
-        if (isJumping == true)
+        if (isJumping)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = false;
@@ -113,14 +110,14 @@ public class PlayerMovement_1 : MonoBehaviour
     }
 
     // Méthode pour définir si le joueur est poussé ou non
-    public void SetPushed(bool state) // Ajouter cette méthode
+    public void SetPushed(bool state)
     {
         isPushed = state;
         Invoke("StopPushed", 0.15f);
     }
-    public void StopPushed() // Ajouter cette méthode
+
+    public void StopPushed()
     {
         isPushed = false;
-
     }
 }
