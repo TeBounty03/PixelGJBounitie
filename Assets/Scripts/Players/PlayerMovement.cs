@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Variables de gravité
     [SerializeField] private float _fallMultiplier = 2f;
     [SerializeField] private float _lowJumpFallMultiplier = 2f;
+    private bool jumpInput;
 
     // Variable pour vérifier si le joueur est poussé
     private bool isPushed = false; // Ajout de cette variable
@@ -53,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
             MovePlayer(horizontalMovement);
         }
         Jump();
+
+        if (!PlayerInputManager.Instance.GetJumpInput()) { jumpInput = false; }
+        else { jumpInput = true; }
         FallMultiplier();
 
         // Animation du personnage
@@ -69,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _fallMultiplier;
         }
-        else if (rb.velocity.y > 0.1f && !PlayerInputManager.Instance.GetJumpInput())
+        else if (rb.velocity.y > 0.1f && !jumpInput)
         {
             // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _lowJumpFallMultiplier;
