@@ -4,23 +4,24 @@ public class DropSpawner : MonoBehaviour
 {
     public GameObject dropPrefab;
     public Camera mainCamera;
-    public float spawnInterval =  1f;
-    public float waitTime = 10f;
     private GameObject instantiatedPrefab;
+    public float initialSpawnInterval = 1f;
+    public float maxSpawnRate = 0.1f; // Le taux de spawn maximal
+    public float spawnRateIncreasePerSecond = 0.01f; // L'augmentation du taux de spawn par seconde
+    private float currentSpawnInterval;
 
     void Start()
     {
-        InvokeRepeating("DropRandomPosition", 0f, spawnInterval);
+        currentSpawnInterval = initialSpawnInterval;
+        InvokeRepeating("DropRandomPosition", 0f, currentSpawnInterval);
     }
 
-    // private IEnumerator WaitBeforeItFalls()
-    // {
-    //     yield return new WaitForSeconds(waitTime);
-    //     Debug.Log("Attendu 3 secondes. Exécute maintenant le reste du code.");
+    void Update()
+    {
+        // Augmenter le taux de spawn progressivement
+        currentSpawnInterval = Mathf.Clamp(currentSpawnInterval - spawnRateIncreasePerSecond * Time.deltaTime, maxSpawnRate, initialSpawnInterval);
+    }
 
-    //     DropIfalls();
-
-    // }
     private void DropRandomPosition()
     {
         // Récupérer la taille de la caméra pour calculer la position en haut
