@@ -26,7 +26,6 @@ public class PlayerHealth_1 : MonoBehaviour
                     if (healthText != null)
                     {
                         // Faites quelque chose avec le TextMeshProUGUI trouvé
-                        Debug.Log("TextMeshProUGUI P1 trouvé !");
                     }
                     else
                     {

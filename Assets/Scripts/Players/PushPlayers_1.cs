@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class PushPlayers : MonoBehaviour
+public class PushPlayers_1 : MonoBehaviour
 {
-    public float pushForce = 1f;
+    public float pushForce = 8f;
     private bool isPushing = false;
 
     void Update()
     {
         // Si vous appuyez sur une touche spécifique (par exemple la barre d'espace), commencez à pousser les autres joueurs
-        if (Input.GetKeyDown(KeyCode.Space) && !isPushing)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isPushing)
         {
             isPushing = true;
             PushOtherPlayers();

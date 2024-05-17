@@ -33,7 +33,7 @@ public class PlayerMovement_1 : MonoBehaviour
     void Update()
     {
         // Sauter si le joueur est au sol et n'est pas poussé
-        if (PlayerInputManager.Instance.GetJumpInput() && isGrounded && !isPushed)
+        if (Input.GetButtonDown("Jump_1") && isGrounded && !isPushed)
         {
             isJumping = true;
         }
@@ -49,7 +49,7 @@ public class PlayerMovement_1 : MonoBehaviour
         if (!isPushed)
         {
             // Calcul du mouvement horizontal
-            float horizontalMovement = PlayerInputManager.Instance.GetHorizontalInput() * moveSpeed * Time.deltaTime;
+            float horizontalMovement = Input.GetAxis("Horizontal_1") * moveSpeed * Time.deltaTime;
             MovePlayer(horizontalMovement);
         }
         Jump();
@@ -64,14 +64,13 @@ public class PlayerMovement_1 : MonoBehaviour
     // Gestion de la gravité lors de la chute
     private void FallMultiplier()
     {
-        if (rb.velocity.y < -0.3f) //POURQUOI ÇA FAIT QUE DE RENTRER ICI BORDEL
+        if (rb.velocity.y < -0.1f) //POURQUOI ÇA FAIT QUE DE RENTRER ICI BORDEL
         {
             // Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _fallMultiplier;
         }
-        else if (rb.velocity.y > 0.1f && !PlayerInputManager.Instance.GetJumpInput())
+        else if (rb.velocity.y > 0.1f && !Input.GetButton("Jump_1"))
         {
-            Debug.Log(PlayerInputManager.Instance.GetJumpInput());
             rb.gravityScale = _lowJumpFallMultiplier;
         }
         else
