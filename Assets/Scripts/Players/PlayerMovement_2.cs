@@ -28,6 +28,7 @@ public class PlayerMovement_2 : MonoBehaviour
 
     // Variable pour vérifier si le joueur est poussé
     private bool isPushed = false; // Ajout de cette variable
+    public bool isMoving;
 
     // Méthode appelée à chaque frame
     void Update()
@@ -51,10 +52,18 @@ public class PlayerMovement_2 : MonoBehaviour
             // Calcul du mouvement horizontal
             float horizontalMovement = Input.GetAxis("Horizontal_2") * moveSpeed * Time.deltaTime;
             MovePlayer(horizontalMovement);
+            if (Input.GetAxis("Horizontal_2") > 0.3 || Input.GetAxis("Horizontal_2") < -0.3)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
-        Jump();
+        animator.SetBool("isMoving", isMoving);
 
-        // Gestion de la gravité lors de la chute
+        Jump();
         FallMultiplier();
 
         // Animation du personnage
