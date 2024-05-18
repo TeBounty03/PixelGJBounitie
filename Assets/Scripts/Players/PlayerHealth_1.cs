@@ -82,5 +82,9 @@ public class PlayerHealth_1 : MonoBehaviour
         // Attendre 1 seconde (ou une autre durée)
         yield return new WaitForSeconds(1f);
         isHit = false;
+        if (currentHealth < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
