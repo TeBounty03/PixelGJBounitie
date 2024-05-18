@@ -12,7 +12,7 @@ public class PushPlayers_1 : MonoBehaviour
         {
             isPushing = true;
             PushOtherPlayers();
-            Invoke("StopPushing", 5f); // Appelle la méthode StopPushing après 5 secondes
+            Invoke("StopPushing", 3f); // Appelle la méthode StopPushing après 5 secondes
         }
     }
 
