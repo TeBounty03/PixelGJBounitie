@@ -1,12 +1,15 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerHealth_1 : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
     public TextMeshProUGUI healthText;
+    public bool isHit;
+    public Animator animator;
 
     void Start()
     {
@@ -48,15 +51,38 @@ public class PlayerHealth_1 : MonoBehaviour
         healthText.text = currentHealth.ToString();
     }
 
+    void FixedUpdate()
+    {
+        animator.SetBool("isHit", isHit);
+    }
+
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        healthText.text = currentHealth.ToString();
-
-        if (currentHealth < 1)
+        if (!isHit)
         {
-            healthText.text = "X";
+            currentHealth -= damage;
+            healthText.text = currentHealth.ToString();
+
+            if (currentHealth < 1)
+            {
+                healthText.text = "X";
+                isHit = true; //si autre animation pour la mort
+            }
+            else
+            {
+                isHit = true;
+            }
+
+            // Démarrer la coroutine pour réinitialiser isHit après un délai
+            StartCoroutine(ResetIsHit());
         }
     }
+
+    private IEnumerator ResetIsHit()
+    {
+        // Attendre 1 seconde (ou une autre durée)
+        yield return new WaitForSeconds(1f);
+        isHit = false;
+    }
+
 }
