@@ -232,6 +232,8 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 3
   healthText: {fileID: 0}
+  isHit: 0
+  animator: {fileID: 5940246359874834852}
 --- !u!114 &1917115770982718932
 MonoBehaviour:
   m_ObjectHideFlags: 0

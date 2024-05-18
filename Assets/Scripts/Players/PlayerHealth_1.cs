@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerHealth_1 : MonoBehaviour
@@ -84,5 +83,4 @@ public class PlayerHealth_1 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isHit = false;
     }
-
 }
