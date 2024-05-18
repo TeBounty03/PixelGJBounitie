@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
     public GameObject dropPrefab;
-    public GameObject instantiatedDropPrefab;
+    private GameObject instantiatedDropPrefab;
     public float interval = 1f;
     public Camera mainCamera;
     private float cameraHeight;

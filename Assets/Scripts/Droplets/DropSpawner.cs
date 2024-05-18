@@ -3,47 +3,59 @@ using UnityEngine;
 public class DropSpawner : MonoBehaviour
 {
     public GameObject dropPrefab;
+    private GameObject instantiatedDropPrefab;
+    public float interval = 1f;
     public Camera mainCamera;
-    private GameObject instantiatedPrefab;
-    public float initialSpawnInterval = 1f;
-    public float maxSpawnRate = 0.1f; // Le taux de spawn maximal
-    public float spawnRateIncreasePerSecond = 0.01f; // L'augmentation du taux de spawn par seconde
-    private float currentSpawnInterval;
+    private float cameraHeight;
+    private float cameraWidth;
+    private Vector3 spawnPosition;
+     public float initialDropSpawnRate = 2f; // Taux initial de création de gouttes (en secondes)
+    public float dropSpawnRateIncrease = 0.1f; // Augmentation du taux de création de gouttes par seconde
+    public float maxSpawnRate = 0.5f; // Taux maximal de création de gouttes
+
+    private float nextDropSpawnTime; // Temps avant la prochaine création de gouttes
+
 
     void Start()
     {
-        currentSpawnInterval = initialSpawnInterval;
-        InvokeRepeating("DropRandomPosition", 0f, currentSpawnInterval);
+        nextDropSpawnTime = initialDropSpawnRate;
+        //currentSpawnInterval = interval;
+        //InvokeRepeating("DropDroplet", 0f, currentSpawnInterval);
+        //StartCoroutine();
     }
 
     void Update()
     {
-        // Augmenter le taux de spawn progressivement
-        currentSpawnInterval = Mathf.Clamp(currentSpawnInterval - spawnRateIncreasePerSecond * Time.deltaTime, maxSpawnRate, initialSpawnInterval);
+        if (Time.time > nextDropSpawnTime)
+        {
+            DropDroplet();
+            nextDropSpawnTime = Time.time + initialDropSpawnRate;
+            initialDropSpawnRate = Mathf.Clamp(initialDropSpawnRate - dropSpawnRateIncrease, maxSpawnRate, initialDropSpawnRate);
+        }
     }
 
     private void DropRandomPosition()
     {
         // Récupérer la taille de la caméra pour calculer la position en haut
-        float cameraHeight = 2f * mainCamera.orthographicSize;
-        float cameraWidth = cameraHeight * mainCamera.aspect;
+        cameraHeight = 2f * mainCamera.orthographicSize;
+        cameraWidth = cameraHeight * mainCamera.aspect;
 
         // Calculer une position aléatoire en haut de la caméra
         float randomX = Random.Range(-cameraWidth / 2f, cameraWidth / 2f);
-        Vector3 spawnPosition = new Vector3(
+        spawnPosition = new Vector3(
             mainCamera.transform.position.x + randomX,
             mainCamera.transform.position.y + (cameraHeight / 2f),
             0f
         );
-        // Instancier la goutte à la position calculée
-        instantiatedPrefab = Instantiate(dropPrefab, spawnPosition, Quaternion.identity);
-        DropItfalls();
     }
 
-    private void DropItfalls()
+    private void DropDroplet()
     {
+        DropRandomPosition();
+;        // Instancier le prefab de goutte à la position aléatoire
+        instantiatedDropPrefab = Instantiate(dropPrefab, spawnPosition, Quaternion.identity);
         // Supprimer les contraintes de gel sur les axes x et y de la nouvelle instance
-        Rigidbody2D rb = instantiatedPrefab.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = instantiatedDropPrefab.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints2D.None;
