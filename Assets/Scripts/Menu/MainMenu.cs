@@ -11,8 +11,6 @@ public class Main_Menu : MonoBehaviour
         MainMenuButton();
     }
 
-    
-
     public void SoloButton()
     {
         LoadGameScene(1);

@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject playerPrefab_2;
     public GameObject playerHeart_2;
     public Canvas canvas;
+    public GameObject pauseMenuCanvas;
 
     void Start()
     {
