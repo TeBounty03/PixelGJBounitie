@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class PlayerHealth_1 : MonoBehaviour
@@ -7,8 +8,9 @@ public class PlayerHealth_1 : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public TextMeshProUGUI healthText;
-    public bool isHit;
+    public bool isHit = false;
     public Animator animator;
+    public event Action<GameObject> onDestroyed;
 
     void Start()
     {
@@ -84,7 +86,8 @@ public class PlayerHealth_1 : MonoBehaviour
         isHit = false;
         if (currentHealth < 1)
         {
-            Destroy(this.gameObject);
+            onDestroyed?.Invoke(gameObject);// Appeler l'événement avant la destruction
+            Destroy(gameObject);
         }
     }
 }

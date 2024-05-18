@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    //public GameObject pauseMenuUI; // Référence au panel Menu Pause
     public GameObject pauseMenuCanvas;
     private bool isPaused = false;
 
