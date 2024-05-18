@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 5193006987719867373}
   - component: {fileID: 5940246359874834852}
   - component: {fileID: -7690774938100048096}
-  - component: {fileID: -6799411431891553074}
   - component: {fileID: 6400142220068173313}
   - component: {fileID: 5398524827000570328}
   - component: {fileID: 4171535397082529834}
@@ -235,19 +234,6 @@ MonoBehaviour:
   healthText: {fileID: 0}
   isHit: 0
   animator: {fileID: 5940246359874834852}
---- !u!114 &-6799411431891553074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4043376682772567355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5eaf72e81e8f2947be9a4d5e7795021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerID: 1
 --- !u!61 &6400142220068173313
 BoxCollider2D:
   m_ObjectHideFlags: 0
