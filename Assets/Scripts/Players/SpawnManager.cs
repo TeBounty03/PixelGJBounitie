@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject playerPrefab_2;
     public GameObject playerHeart_2;
     public Canvas canvas;
-    public GameObject pauseMenuCanvas;
+    public GameOverManager gameOverManager; // Référence au GameOverManager
     private GameObject player1;
     private GameObject player2;
 
@@ -38,26 +38,21 @@ public class SpawnManager : MonoBehaviour
 
     void OnPlayerDestroyed(GameObject destroyedPlayer)
     {
+        Time.timeScale = 0f; // Met le jeu en pause
         if (player2 == null)
         {
-            DisplayGameOver("Game Over! You lost.");
+            gameOverManager.DisplayGameOver("Game Over! You lost.");
         }
         else
         {
             if (destroyedPlayer == player1)
             {
-                DisplayGameOver("Game Over! Player 2 wins");
+                gameOverManager.DisplayGameOver("Player 2 wins");
             }
             else if (destroyedPlayer == player2)
             {
-                DisplayGameOver("Game Over! Player 1 wins");
+                gameOverManager.DisplayGameOver("Player 1 wins");
             }
         }
-    }
-
-    void DisplayGameOver(string message)
-    {
-        // Afficher le message de Game Over
-        Debug.Log(message);
     }
 }
