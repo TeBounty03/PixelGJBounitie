@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DropSpawner : MonoBehaviour
+public class Test : MonoBehaviour
 {
     public GameObject dropPrefab;
     private GameObject instantiatedDropPrefab;
