@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject playerHeart_2;
     public Canvas canvas;
     public GameObject pauseMenuCanvas;
+    private GameObject player1;
+    private GameObject player2;
 
     void Start()
     {
@@ -16,19 +18,46 @@ public class SpawnManager : MonoBehaviour
         {
             // Instancier le premier joueur
             Instantiate(playerHeart_1, new Vector3(40, 50, 50), Quaternion.identity, canvas.transform);
-            Instantiate(playerPrefab_1, Vector3.zero, Quaternion.identity);
+            player1 = Instantiate(playerPrefab_1, Vector3.zero, Quaternion.identity);
+            player1.GetComponent<PlayerHealth_1>().onDestroyed += OnPlayerDestroyed;
 
         }
         else if (numberOfPlayers == 2)
         {
             Instantiate(playerHeart_1, new Vector3(40, 400, 50), Quaternion.identity, canvas.transform);
             // Instancier le premier joueur
-            Instantiate(playerPrefab_1, new Vector3(-1, 0, 0), Quaternion.identity);
+            player1 = Instantiate(playerPrefab_1, new Vector3(-1, 0, 0), Quaternion.identity);
+            player1.GetComponent<PlayerHealth_1>().onDestroyed += OnPlayerDestroyed;
 
             Instantiate(playerHeart_2, new Vector3(40, 200, 50), Quaternion.identity, canvas.transform);
             // Instancier le deuxième joueur
-            Instantiate(playerPrefab_2, new Vector3(1, 0, 0), Quaternion.identity);
+            player2 = Instantiate(playerPrefab_2, new Vector3(1, 0, 0), Quaternion.identity);
+            player2.GetComponent<PlayerHealth_2>().onDestroyed += OnPlayerDestroyed;
         }
+    }
 
+    void OnPlayerDestroyed(GameObject destroyedPlayer)
+    {
+        if (player2 == null)
+        {
+            DisplayGameOver("Game Over! You lost.");
+        }
+        else
+        {
+            if (destroyedPlayer == player1)
+            {
+                DisplayGameOver("Game Over! Player 2 wins");
+            }
+            else if (destroyedPlayer == player2)
+            {
+                DisplayGameOver("Game Over! Player 1 wins");
+            }
+        }
+    }
+
+    void DisplayGameOver(string message)
+    {
+        // Afficher le message de Game Over
+        Debug.Log(message);
     }
 }
