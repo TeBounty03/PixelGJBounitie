@@ -18,6 +18,7 @@ public class GameOverManager : MonoBehaviour
     {
         gameOverCanvas.SetActive(false); // Assurez-vous que le panneau est désactivé au démarrage
         restartButton.onClick.AddListener(RestartGame);
+        gameOverText.fontSize = 25;
     }
 
     public void DisplayGameOver(string message)

@@ -19,5 +19,12 @@ public class ScrollCredits : MonoBehaviour
             // Charge la scène du menu
             SceneManager.LoadScene("Menu");
         }
+
+        // Vérifie si un bouton de la souris est cliqué (le bouton gauche est 0)
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Charge la scène du menu
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
