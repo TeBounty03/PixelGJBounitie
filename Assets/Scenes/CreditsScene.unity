@@ -274,7 +274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: -536.9}
+  m_SizeDelta: {x: 400, y: -900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &336563687
 MonoBehaviour:
@@ -298,67 +298,66 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Don''t get wet: The Credits
 
-    
 
-    Presented by Yunitie, Capi, and
-    Bounty
 
-    
+    Presented by Yunitie, Capi, and Bounty
 
-    Lead Designer: Yunitie
 
-    The mastermind behind the art
-    of avoiding wetness. Yunitie spent countless hours researching the most inconveniently
-    placed raindrops to ensure maximum challenge.
 
-    
+    Lead
+    Designer: Yunitie
 
-    Chief Code Ninja:
-    Capi
+    The mastermind behind the art of avoiding wetness. Yunitie
+    spent countless hours researching the most inconveniently placed raindrops to
+    ensure maximum challenge.
 
-    Capi wrote 500,000 lines of code to simulate the perfect raindrop
-    physics. Unfortunately, 499,999 of those lines were just comments about how much
-    it rains where he lives.
 
-    
 
-    Creative Director of Splash Sounds: Bounty
+    Chief Code Ninja: Capi
 
-    Bounty
-    insisted every raindrop needed a unique sound. After recording 3,000 splashes,
-    he now believes his microphone is an aquatic creature.
+    Capi wrote 500,000
+    lines of code to simulate the perfect raindrop physics. Unfortunately, 499,999
+    of those lines were just comments about how much it rains where he lives.
 
-    
 
-    Special Thanks
-    to:
 
-    
+    Creative
+    Director of Splash Sounds: Bounty
 
-    Umbrella Manufacturers: For declining our sponsorship request.
+    Bounty insisted every raindrop needed
+    a unique sound. After recording 3,000 splashes, he now believes his microphone
+    is an aquatic creature.
 
-    The
-    Weather Channel: For inspiring our hardest levels.
 
-    The Sun: For taking
-    a vacation during our entire development cycle.
+
+    Special Thanks to:
+
+
+
+    Umbrella Manufacturers:
+    For declining our sponsorship request.
+
+    The Weather Channel: For inspiring
+    our hardest levels.
+
+    The Sun: For taking a vacation during our entire development
+    cycle.
 
     Beta Testers:
 
-    
 
-    The
-    Cat: For running away every time it got wet.
 
-    The Plant: For growing every
-    time it got wet.
+    The Cat: For running away every time it got
+    wet.
 
-    The Guy Without an Umbrella: For providing invaluable
-    data on how to avoid a complete drenching.
+    The Plant: For growing every time it got wet.
+
+    The Guy Without
+    an Umbrella: For providing invaluable data on how to avoid a complete drenching.
 
     Inspirations:
 
-    
+
 
     That
     one time Yunitie forgot his umbrella and had to dodge raindrops all the way home.
@@ -375,13 +374,12 @@ MonoBehaviour:
     raindrops were harmed in the making of this game. Any resemblance to actual rain,
     living or dead, is purely coincidental.
 
-    
 
-    Thank you for playing Don''t
-    get wet!
 
-    May your reflexes be quick, your feet be dry, and your spirit
-    un-dampened!'
+    Thank you for playing Don''t get
+    wet!
+
+    May your reflexes be quick, your feet be dry, and your spirit un-dampened!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -471,7 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 20
-  menuSceneName: MainMenu
 --- !u!1 &646308874
 GameObject:
   m_ObjectHideFlags: 0
