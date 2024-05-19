@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement_2 : MonoBehaviour
 {
+    AudioManager audioManager;
     // Variables de mouvement
     public float moveSpeed = 350f;
     public float jumpForce = 7f;
@@ -29,6 +30,11 @@ public class PlayerMovement_2 : MonoBehaviour
     // Variable pour vérifier si le joueur est poussé
     private bool isPushed = false; // Ajout de cette variable
     public bool isMoving;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Méthode appelée à chaque frame
     void Update()
@@ -103,6 +109,7 @@ public class PlayerMovement_2 : MonoBehaviour
         // Saut
         if (isJumping == true)
         {
+            audioManager.PlaySFX(audioManager.jump);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = false;
         }

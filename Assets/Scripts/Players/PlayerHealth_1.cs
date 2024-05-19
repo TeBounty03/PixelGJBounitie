@@ -11,6 +11,12 @@ public class PlayerHealth_1 : MonoBehaviour
     public bool isHit = false;
     public Animator animator;
     public event Action<GameObject> onDestroyed;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -61,6 +67,7 @@ public class PlayerHealth_1 : MonoBehaviour
     {
         if (!isHit)
         {
+            audioManager.PlaySFX(audioManager.elec);
             currentHealth -= damage;
             healthText.text = currentHealth.ToString();
 
@@ -88,6 +95,7 @@ public class PlayerHealth_1 : MonoBehaviour
         {
             onDestroyed?.Invoke(gameObject);// Appeler l'événement avant la destruction
             yield return new WaitForSeconds(0.1f);
+            audioManager.PlaySFX(audioManager.die);
             Destroy(gameObject);
         }
     }
