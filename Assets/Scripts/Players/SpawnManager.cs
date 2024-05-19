@@ -37,12 +37,12 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(playerHeart_1, new Vector3(40, 400, 50), Quaternion.identity, canvas.transform);
             // Instancier le premier joueur
-            player1 = Instantiate(playerPrefab_1, new Vector3(-1, 0, 0), Quaternion.identity);
+            player1 = Instantiate(playerPrefab_1, new Vector3(8, -2, 0), Quaternion.identity);
             player1.GetComponent<PlayerHealth_1>().onDestroyed += OnPlayerDestroyed;
 
             Instantiate(playerHeart_2, new Vector3(40, 200, 50), Quaternion.identity, canvas.transform);
             // Instancier le deuxième joueur
-            player2 = Instantiate(playerPrefab_2, new Vector3(1, 0, 0), Quaternion.identity);
+            player2 = Instantiate(playerPrefab_2, new Vector3(-5, -2, 0), Quaternion.identity);
             player2.GetComponent<PlayerHealth_2>().onDestroyed += OnPlayerDestroyed;
         }
     }

@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class PushPlayers_1 : MonoBehaviour
 {
+    AudioManager audioManager;
     public float pushForce = 8f;
     private bool isPushing = false;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Update()
     {
@@ -18,6 +24,7 @@ public class PushPlayers_1 : MonoBehaviour
 
     private void PushOtherPlayers()
     {
+        audioManager.PlaySFX(audioManager.bump);
         // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, GetComponent<CircleCollider2D>());
         // Obtenir le composant BoxCollider2D attaché à l'objet
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();

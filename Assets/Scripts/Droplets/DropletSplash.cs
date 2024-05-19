@@ -7,6 +7,12 @@ public class Droplet_Splash : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     private bool splash;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,6 +41,7 @@ public class Droplet_Splash : MonoBehaviour
 
     private void Destroy()
     {
+        audioManager.PlayRandomSFX();
         if (rb != null)
         {
             // Geler la position Y
