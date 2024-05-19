@@ -87,6 +87,7 @@ public class PlayerHealth_2 : MonoBehaviour
         if (currentHealth < 1)
         {
             onDestroyed?.Invoke(gameObject);// Appeler l'événement avant la destruction
+            yield return new WaitForSeconds(0.1f);
             Destroy(gameObject); 
         }
     }
